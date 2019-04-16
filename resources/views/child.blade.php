@@ -1,7 +1,10 @@
 @extends('index')
 
 @section('content')
-    <p>Блок №1</p>
+
+    <a href="/"> обратно</a>
+
+    <p>yield - section</p>
 
     <p> @php
                 echo env('DB_DATABASE','null');
