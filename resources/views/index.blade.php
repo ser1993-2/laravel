@@ -1,77 +1,39 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-    <script src="{{ mix('/js/app.js')}}" rel="stylesheet"></script>
+
+    @include('include')
+
     <title>Test laravel</title>
+
+    @stack('scripts')
+
 </head>
 <body>
 
 <div class="container">
 
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <div class="col-6">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Home block</div>
 
-            <a href="/home"> auth</a>
-            <br/>
-            <a href="/test"> Подключение через yield</a>
-            <br/>
-            <a href="/route"> rout (controller)</a>
-
-            <p>Панедь отладки</p>
-            <p>composer require --dev barryvdh/laravel-debugbar</p>
-
-            <p>ServiceProvider in config/app.php</p>
-
-            <p>Barryvdh\Debugbar\ServiceProvider::class</p>
-
-            <p>'Debugbar' => Barryvdh\Debugbar\Facade::class,</p>
-
-            <p> php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"</p>
-
+                <div class="card-body">
+                    <a href="/">Child 1</a>
+                    <a href="/test">Child 2</a>
+                </div>
+            </div>
         </div>
 
-        <hr/>
-
-        <div class="col-6">
-
-            @yield('content')
-
-        </div>
-
-        <div class="col-6">
-
-
-            @section('incl')
-                <p>  2 секция </p>
-
-                @endsection
-
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-6">
-            @yield('rout')
-
-
-        </div>
-
-        <div class="col-6">
-
-            @include('include')
-
-        </div>
+        @yield('content')
+        @yield('content2')
 
     </div>
 
 </div>
+
+
 
 </body>
 </html>

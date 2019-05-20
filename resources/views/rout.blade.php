@@ -1,10 +1,7 @@
-@extends('index')
+@push('sheet')
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+@endpush
 
-@section('rout')
-
-    <a href="/"> обратно</a>
-
-    <p>  {{ $value }} </p>
-
-
-@endsection
+@push('scripts')
+    <script src="{{ mix('/js/app.js')}}" rel="stylesheet"></script>
+@endpush

@@ -1,5 +1,4 @@
-
-    <p>include</p>
-
-    <p>Blade - простой, но мощный шаблонизатор, входящий в состав Laravel. В отличие от других шаблонизаторов, он не ограничивает вас в использовании конструкций PHP внутри шаблонов. Шаблоны Blade компилируются в PHP-код и кэшируются фреймворком - Blade не вносит дополнительных тормозов в работу фреймворка. </p>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Сайт об HTML и создании сайтов">
+<meta name="Keywords" content="HTML, META, метатег, тег, поисковая система">

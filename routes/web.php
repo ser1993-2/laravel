@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('child');
 });
 
 Route::get('/test', function () {
-    return view('child');
+    return view('child2');
 });
 
 Auth::routes();
