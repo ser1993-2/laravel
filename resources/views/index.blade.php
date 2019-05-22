@@ -22,12 +22,14 @@
                 <div class="card-body">
                     <a href="/">Child 1</a>
                     <a href="/test">Child 2</a>
+                    <a href="/admin">admin</a>
                 </div>
             </div>
         </div>
 
         @yield('content')
         @yield('content2')
+        @yield('admin')
 
     </div>
 
