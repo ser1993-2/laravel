@@ -29,5 +29,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        message: 'Вы загрузили эту страницу: ' + new Date().toLocaleString()
+    }
 });
+

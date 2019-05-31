@@ -17,7 +17,6 @@ class QbComment extends Migration
             $table->increments('id');
             $table->integer('product_id');
             $table->integer('user_id');
-            $table->integer('raiting_id');
             $table->string('comment',100);
             $table->integer('like');
             $table->timestamps();

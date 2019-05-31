@@ -23,6 +23,7 @@
                     <a href="/">Child 1</a>
                     <a href="/test">Child 2</a>
                     <a href="/admin">admin</a>
+                    <a href="/vue">vue</a>
                 </div>
             </div>
         </div>
