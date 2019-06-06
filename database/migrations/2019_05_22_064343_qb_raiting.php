@@ -16,7 +16,6 @@ class QbRaiting extends Migration
         Schema::create('qb_raiting', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id');
-            $table->integer('comment_id');
             $table->integer('raiting');
             $table->timestamps();
         });
