@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        str_random(10);
-
         DB::table('qb_users')->insert([
             ['name' => "Иван", 'lastname' => 'Петров', 'city' => 'Волгоград'],
             ['name' => "Игорь", 'lastname' => 'Иванов', 'city' => 'Астрахань'],
@@ -31,61 +29,28 @@ class DatabaseSeeder extends Seeder
         DB::table('qb_products')->insert([
             ['name' => "Чайник простой", 'price' => 4000],
             ['name' => "Самовар на углях", 'price' => 5000],
-            ['name' => "Телевизор 102", 'price' => 10000],
+            ['name' => "Телевизор 102", 'price' => 2000],
             ['name' => "Холодильник 5 камерный", 'price' => 15000],
             ['name' => "Тостер ручной", 'price' => 5000],
             ['name' => "Утюг 1Вт", 'price' => 8000],
-            ['name' => "Кофемашнка капсульная", 'price' => 10000],
+            ['name' => "Кофемашнка капсульная", 'price' => 2000],
         ]);
 
-        DB::table('qb_raiting')->insert([
-            ['product_id' => 4,  'raiting' => 3],
-            ['product_id' => 5,  'raiting' => 4],
-            ['product_id' => 6,  'raiting' => 3],
-            ['product_id' => 7, 'raiting' => 5],
-            ['product_id' => 8,  'raiting' => 3],
-            ['product_id' => 9,  'raiting' => 5],
-            ['product_id' => 4,  'raiting' => 3],
-            ['product_id' => 5,  'raiting' => 4],
-            ['product_id' => 6,  'raiting' => 3],
-            ['product_id' => 7,  'raiting' => 5],
-            ['product_id' => 8,  'raiting' => 3],
-            ['product_id' => 9,  'raiting' => 5],
-            ['product_id' => 9,  'raiting' => 3],
-            ['product_id' => 5,  'raiting' => 4],
-            ['product_id' => 6,  'raiting' => 3],
-            ['product_id' => 7,  'raiting' => 5],
-            ['product_id' => 8,  'raiting' => 3],
-            ['product_id' => 9,  'raiting' => 5],
-            ['product_id' => 4,  'raiting' => 3],
-            ['product_id' => 5,  'raiting' => 4],
-            ['product_id' => 6,  'raiting' => 3],
-            ['product_id' => 7,  'raiting' => 5],
-            ['product_id' => 8, 'raiting' => 3],
-            ['product_id' => 9,  'raiting' => 5],
-            ['product_id' => 4,  'raiting' => 3],
-            ['product_id' => 5, 'raiting' => 4],
-            ['product_id' => 6,  'raiting' => 3],
-            ['product_id' => 7,  'raiting' => 5],
-            ['product_id' => 8,  'raiting' => 3],
-            ['product_id' => 9,  'raiting' => 5],
-            ['product_id' => 9,  'raiting' => 5],
-            ['product_id' => 4,  'raiting' => 3],
-            ['product_id' => 5,  'raiting' => 4],
-            ['product_id' => 6,  'raiting' => 3],
-            ['product_id' => 7, 'raiting' => 5],
-            ['product_id' => 8,   'raiting' => 3],
-            ['product_id' => 9,   'raiting' => 5],
-        ]);
 
-        DB::table('qb_comment')->insert([
-            ['user_id' => 3, 'product_id' => 4, 'comment' => 'доволен'  , 'like' => 0],
-            ['user_id' => 4, 'product_id' => 5, 'comment' => 'так себе' , 'like' => 11],
-            ['user_id' => 5, 'product_id' => 5, 'comment' => 'очень плохо'  , 'like' => 0],
-            ['user_id' => 6, 'product_id' => 6, 'comment' => 'средне' , 'like' => 0],
-            ['user_id' => 7, 'product_id' => 7, 'comment' => 'можно было лучше' , 'like' => 12],
+        for ($i = 1 ; $i < 100 ; $i++) {
 
-        ]);
+            $userId = rand(1, 10);
+
+            DB::table('qb_raiting')->insert([
+                ['product_id' => rand(1, 7), 'comment_id' => $i, 'user_id' => $userId, 'raiting' => rand(1, 5)],
+
+            ]);
+
+            DB::table('qb_comment')->insert([
+                ['user_id' => $userId, 'product_id' => rand(1, 7), 'comment' => str_random(20), 'like' => rand(1, 10)],
+
+            ]);
+        }
 
     }
 }
