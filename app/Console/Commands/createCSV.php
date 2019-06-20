@@ -71,34 +71,30 @@ class createCSV extends Command
         $users = DB::table('qb_raiting')
             ->join('qb_products', 'qb_products.id', '=', 'qb_raiting.product_id')
             ->join('qb_comment', 'qb_comment.id','=', 'qb_raiting.comment_id')
-            ->join('qb_users', 'qb_users.id','=', 'qb_raiting.user_id')             //  более 10 отзыов
-            ->whereRaw( '9 <= (select count(commentsCount.id) 
+            ->join('qb_users', 'qb_users.id','=', 'qb_raiting.user_id')             //  более 100 отзыов
+            ->whereRaw( '100 >= (select count(commentsCount.id) 
                            from  qb_raiting as raitingCount
                        inner join qb_products as productsCount on productsCount.id = raitingCount.product_id
                        inner join qb_comment as commentsCount on commentsCount.id = raitingCount.comment_id
                         inner join qb_users as users on users.id = raitingCount.user_id
-                            where productsCount.price >= 3000 and users.id = qb_users.id)')
-            ->select('qb_comment.id as ids' )
+                            where productsCount.price >= 3000 and users.id = qb_users.id 
+                            and (select avg(qb_raiting.raiting) from qb_raiting where users.id = qb_raiting.user_id) >= 4)')
             ->distinct()
-            ->get();
-
-        foreach ($users as $key=>$user) {
-            $array[$key] = $user->ids;
-        }
-
+            ->pluck('qb_comment.id')
+            ->all();
 
         $query = DB::table('qb_raiting')
             ->join('qb_products', 'qb_products.id', '=', 'qb_raiting.product_id')
             ->join('qb_comment', 'qb_comment.id','=', 'qb_raiting.comment_id')
             ->join('qb_users', 'qb_users.id','=', 'qb_raiting.user_id')
-            ->Where(function ($query) {
+            ->Where(function ($query) use ($users){
                 $query->where('qb_comment.like','>=',10)
-                    ->orwhere(function ($query) {
-                        $query->whereIn('qb_comment.id', [1,2,3]);                                                           // array
+                    ->orwhere(function ($query) use ($users) {
+                        $query->whereIn('qb_comment.id', $users);
                     });
             })
             ->whereRaw('qb_users.city IN  (\'Волгоград\', \'Самара\')')
-            ->whereRaw( '(select avg(qb_raiting.raiting) from qb_raiting where qb_users.id = qb_comment.user_id) >= 2')            //  средняя оценка 4
+            //->whereRaw( '(select avg(qb_raiting.raiting) from qb_raiting where qb_users.id = qb_comment.user_id) >= 2')            //  средняя оценка 4
             ->select('qb_users.name as name', 'qb_users.city as city', 'qb_comment.comment as comment' , 'qb_raiting.raiting as raiting')
             ->get();
 
