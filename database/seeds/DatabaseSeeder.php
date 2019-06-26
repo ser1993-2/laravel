@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             $userId = rand(1, 10);
 
             DB::table('qb_raiting')->insert([
-                ['product_id' => rand(1, 7), 'comment_id' => $i, 'user_id' => $userId, 'raiting' => rand(1, 5)],
+                ['product_id' => rand(1, 7), 'comment_id' => $i, 'user_id' => $userId, 'raiting' => rand(3, 5)],
 
             ]);
 
